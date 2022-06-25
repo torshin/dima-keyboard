@@ -49,9 +49,9 @@ _______         , _______  , _______   , _______  , _______   , _______     , __
 )                  ,
 
 [_NUM] = LAYOUT(
-KC_NUM  , KC_PSLS  , KC_KP_7   , KC_KP_8  , KC_KP_9   , KC_PMNS                                                        , KC_WH_U     , KC_BTN1         , KC_MS_U      , KC_BTN2       , _______       , RALT(KC_LBRC),
-KC_CALC  , KC_PAST  , KC_KP_4   , KC_KP_5  , KC_KP_6   , KC_PPLS                                                           , KC_WH_D     , KC_MS_L         , KC_MS_D      , KC_MS_R       , _______       , RALT(KC_QUOT),
-_______  , KC_KP_0  , KC_KP_1   , KC_KP_2  , KC_KP_3   , KC_PDOT     , _______                              , _______      , _______     , RALT(KC_M)     , RALT(KC_COMM) , RALT(KC_DOT)  , RALT(KC_SLSH) , RALT(KC_RBRC),
+KC_NUM       , KC_PSLS  , KC_KP_7   , KC_KP_8  , KC_KP_9   , KC_PMNS                                                        , KC_WH_U     , KC_BTN1         , KC_MS_U      , KC_BTN2       , _______       , RALT(KC_LBRC),
+KC_CALC      , KC_PAST  , KC_KP_4   , KC_KP_5  , KC_KP_6   , KC_PPLS                                                        , KC_WH_D     , KC_MS_L         , KC_MS_D      , KC_MS_R       , _______       , RALT(KC_QUOT),
+LSFT(KC_DOT) , KC_KP_0  , KC_KP_1   , KC_KP_2  , KC_KP_3   , KC_DOT     , _______                              , _______      , _______     , RALT(KC_M)     , RALT(KC_COMM) , RALT(KC_DOT)  , RALT(KC_SLSH) , RALT(KC_RBRC),
 		                    	 _______   , _______  , _______     , _______    , _______     , _______   , _______       , _______    , _______        , RALT(KC_BSLS)
 
 )                  ,
