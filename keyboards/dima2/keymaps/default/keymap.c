@@ -13,7 +13,31 @@ enum layers {
 #define LOWER_T(kc) LT(_LOWER, kc)
 
 #define SWT_LNG LGUI(KC_SPC)
-#define SFT_TAB LSFT(KC_TAB)
+
+// Tap Dance keycodes
+enum td_keycodes {
+    NUM_SWT_LNG
+};
+
+// Define a type containing as many tapdance states as you need
+typedef enum {
+    TD_NONE,
+    TD_UNKNOWN,
+    TD_SINGLE_TAP,
+    TD_SINGLE_HOLD
+} td_state_t;
+
+// Create a global instance of the tapdance state type
+static td_state_t td_state;
+
+// Declare your tapdance functions:
+
+// Function to determine the current tapdance state
+td_state_t cur_dance(qk_tap_dance_state_t *state);
+
+// `finished` and `reset` functions for each tapdance keycode
+void altlp_finished(qk_tap_dance_state_t *state, void *user_data);
+void altlp_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // ,(?![^(\n]*\))
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -21,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MAIN] = LAYOUT(
 KC_GRV        , KC_Q   , KC_W , KC_E    , KC_R        , KC_T                                                                                          , KC_Y               , KC_U                , KC_I    , KC_O    , KC_P    , RGUI_T(KC_LBRC) ,
 LCTL_T(KC_ESC), KC_A   , KC_S , KC_D    , KC_F        , KC_G                                                                                          , KC_H               , KC_J                , KC_K    , KC_L    , KC_SCLN , RCTL_T(KC_QUOT) ,
-KC_LALT       , KC_Z   , KC_X , KC_C    , KC_V        , KC_B              , LT(_NUM, SWT_LNG)                                       , SWT_LNG         , KC_N               , KC_M                , KC_COMM , KC_DOT  , KC_SLSH , RALT_T(KC_RBRC) ,
+KC_LALT       , KC_Z   , KC_X , KC_C    , KC_V        , KC_B              , TD(NUM_SWT_LNG)                                       , SWT_LNG         , KC_N               , KC_M                , KC_COMM , KC_DOT  , KC_SLSH , RALT_T(KC_RBRC) ,
 								KC_LGUI , LSFT(KC_TAB), LT(_RAISE,KC_TAB) , LSFT_T(KC_SPC) , LT(_LOWER, KC_DEL) , LT(_LOWER,KC_ESC) , RSFT_T(KC_BSPC) , LT(_RAISE, KC_ENT) , LT(_MOUSE, KC_RSFT) , KC_BSLS
 )                  ,
 
@@ -65,4 +89,49 @@ _______ , _______  , _______ , _______ , _______    , KC_SLEP  , _______        
 )                  ,
 
 
+};
+
+
+// Determine the tapdance state to return
+td_state_t cur_dance(qk_tap_dance_state_t *state) {
+    if (state->count == 1) {
+        if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
+        else return TD_SINGLE_HOLD;
+    }
+
+    else return TD_UNKNOWN; // Any number higher than the maximum state value you return above
+}
+
+// Handle the possible states for each tapdance keycode you define:
+void altlp_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_state = cur_dance(state);
+    switch (td_state) {
+        case TD_SINGLE_TAP:
+            register_mods(MOD_BIT(KC_LGUI));
+            break;
+        case TD_SINGLE_HOLD:
+            layer_on(_NUM); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
+            break;
+        default:
+            break;
+    }
+}
+
+
+void altlp_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (td_state) {
+        case TD_SINGLE_TAP:
+            tap_code16(KC_SPC);
+            un register_mods(MOD_BIT(KC_LGUI));
+         break;
+        case TD_SINGLE_HOLD:
+            layer_off(_NUM); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
+            break;
+        default:
+            break;
+    }
+}
+// Define `ACTION_TAP_DANCE_FN_ADVANCED()` for each tapdance keycode, passing in `finished` and `reset` functions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [NUM_SWT_LNG] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, altlp_finished, altlp_reset)
 };
