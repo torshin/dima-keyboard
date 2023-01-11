@@ -1,0 +1,10 @@
+{
+	"keyboard_name": "dima2",
+	"manufacturer": "Dima",
+	"maintainer": "Dima Torshin",
+	"usb": {
+		"vid": "0x4273",
+		"pid": "0x0412",
+		"device_version": "0.0.1"
+	}
+}

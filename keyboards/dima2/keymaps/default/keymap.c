@@ -41,7 +41,7 @@ LALT_T(KC_EQL)	, KC_1		, KC_2	, KC_3		, KC_4			, KC_5							, _______										,
 ),
 
 [_RAISE] = LAYOUT(
-_______				, KC_SLCK	, KC_PGUP				, (KC_UP)		, LCTL(KC_HOME)	, KC_VOLU																														, RALT(KC_T), KC_HOME	, KC_UP		, KC_PGUP, KC_SLCK, _______				,
+_______				, KC_LSCR	, KC_PGUP				, (KC_UP)		, LCTL(KC_HOME)	, KC_VOLU																														, RALT(KC_T), KC_HOME	, KC_UP		, KC_PGUP, KC_LSCR, _______				,
 LCTL_T(KC_APP), KC_INS	, LCTL(KC_LEFT)	, (KC_DOWN)	, LCTL(KC_RGHT)	, KC_MPLY																														, KC_MUTE		, KC_LEFT	, KC_DOWN	, KC_RGHT, KC_INS	, RCTL_T(KC_APP),
 _______				, KC_PAUS	, KC_PGDN				, KC_PSCR		, LCTL(KC_END)	, KC_VOLD	, _______																				, _______	, RALT(KC_M), KC_END	, KC_PSCR	, KC_PGDN, KC_PAUS, _______				,
 																					_______		, _______				, _______	, _______, LT(_THIRD,KC_DEL), LT(_THIRD,KC_ESC)	, _______	, _______		, _______	, _______
@@ -65,10 +65,10 @@ LSFT(KC_DOT), KC_KP_0, KC_KP_1, KC_KP_2	, KC_KP_3, KC_DOT	, _______										, _
 ),
 
 [_THIRD] = LAYOUT(
-DEBUG			, _______, _______, _______, _______, _______																				, _______, _______, _______, _______, _______, DEBUG	,
-RESET			, _______, _______, _______, _______, _______																				, _______, _______, _______, _______, _______, RESET	,
+_______		, _______, _______, _______, _______, _______																				, _______, _______, _______, _______, _______, _______,
+_______		, _______, _______, _______, _______, _______																				, _______, _______, _______, _______, _______, _______,
 TG(_GAME)	, _______, _______, _______, _______, KC_SLEP, _______									, TG(_GAME)	, KC_SLEP, _______, _______, _______, _______, _______,
-															_______, RESET	, _______, _______, _______, _______, _______	, _______, RESET	, _______
+															_______, QK_BOOT, _______, _______, _______, _______, _______		, _______, QK_BOOT	, _______
 
 ),
 
