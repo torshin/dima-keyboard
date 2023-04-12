@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 // wiring of each half
-#define MATRIX_ROW_PINS { B2, B6, B5, B4 }
+#define MATRIX_ROW_PINS { B2, B6, E6, B4 }
 #define MATRIX_COL_PINS { F4, F5, F6, F7, B1, B3 }
 
 //#define USE_I2C
